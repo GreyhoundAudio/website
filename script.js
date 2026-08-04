@@ -25,20 +25,13 @@
     cursor.classList.add('active');
     if (!raf) raf = requestAnimationFrame(loop);
 
-    // detect hover over text elements directly under the pointer —
-    // more reliable than CSS :hover here since the cursor mark itself
-    // is a pointer-events:none overlay sitting on top of everything
-    var el = document.elementFromPoint(e.clientX, e.clientY);
-    var overText = !!(el && el.closest && el.closest('[data-hoverable]'));
-    cursor.classList.toggle('on-text', overText);
-  });
-
-  window.addEventListener('pointerdown', function () {
-    cursor.classList.add('down');
-  });
-
-  window.addEventListener('pointerup', function () {
-    cursor.classList.remove('down');
+    // Hover-over-text detection (ring tighten/focus effect) is paused for
+    // now — the CSS states (.on-text) were intentionally removed so this
+    // has no visual effect. Re-enable once more of the site is built out:
+    //
+    // var el = document.elementFromPoint(e.clientX, e.clientY);
+    // var overText = !!(el && el.closest && el.closest('[data-hoverable]'));
+    // cursor.classList.toggle('on-text', overText);
   });
 
   window.addEventListener('mouseleave', function () {

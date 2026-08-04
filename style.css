@@ -18,7 +18,8 @@
   --bg: #E8E3D7;
   --ink: #2E2C28;
   --ink-soft: #8A8478;
-  --ring: #BF3922;
+  --ring: rgba(46, 44, 40, 0.55);
+  --accent: #BF3922;
 }
 
 * {
@@ -36,13 +37,24 @@ body {
   color: var(--ink);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-weight: 300;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Homepage only: centred single-screen layout, no scroll */
+body.home {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100dvh;
   overflow: hidden;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+}
+
+/* Inner pages: normal top-down flow, nav sits above content */
+body.page {
+  padding: 6.5rem 1.5rem 4rem;
+  display: flex;
+  justify-content: center;
 }
 
 .wrap {
@@ -62,6 +74,14 @@ body {
   }
 }
 
+.logo {
+  display: block;
+  width: clamp(140px, 28vw, 260px);
+  height: auto;
+  margin: 0 auto 1.25rem;
+  opacity: 0.92;
+}
+
 .mark {
   font-size: clamp(1.75rem, 6vw, 3.25rem);
   font-weight: 300;
@@ -79,9 +99,149 @@ body {
   color: var(--ink-soft);
 }
 
+/* ============ site nav ============ */
+.nav {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.8rem, 1.6vw, 0.9rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  text-decoration: none;
+  color: var(--ink-soft);
+  transition: color 0.2s ease;
+  margin-right: 1.5rem;
+}
+
+.nav a:last-child {
+  margin-right: 0;
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+  color: var(--ink);
+}
+
+.nav a.is-active {
+  color: var(--ink);
+}
+
+.nav a.contact-link {
+  color: var(--accent);
+}
+
+.nav a.contact-link:hover,
+.nav a.contact-link:focus-visible {
+  color: var(--accent);
+  opacity: 0.8;
+}
+
+/* ============ inner page content ============ */
+.page-content {
+  max-width: 640px;
+  margin: 0 auto;
+  animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.page-title {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  text-transform: lowercase;
+  margin-bottom: 1.75rem;
+}
+
+.page-content p {
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--ink);
+  margin-bottom: 1.1em;
+  max-width: 56ch;
+}
+
+.page-content .lede {
+  color: var(--ink-soft);
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  margin-bottom: 2em;
+}
+
+.service-list {
+  list-style: none;
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(46, 44, 40, 0.12);
+}
+
+.service-list li {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid rgba(46, 44, 40, 0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.service-list .service-name {
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  font-weight: 400;
+  text-transform: lowercase;
+}
+
+.service-list .service-desc {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--ink-soft);
+  flex-basis: 100%;
+}
+
+.contact-block {
+  margin-top: 1.5rem;
+}
+
+.contact-block a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(191, 57, 34, 0.3);
+  transition: opacity 0.2s ease;
+}
+
+.contact-block a:hover,
+.contact-block a:focus-visible {
+  opacity: 0.75;
+}
+
+.contact-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  margin-bottom: 0.5rem;
+}
+
+.contact-label {
+  font-size: 0.75rem;
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  margin-top: 1.5rem;
+  margin-bottom: 0.35rem;
+}
+
 /* ============ custom cursor ============ */
 /* Only on devices with a fine pointer (mouse/trackpad) and hover support.
-   Touch devices keep their native cursor entirely. */
+   Touch devices keep their native cursor entirely.
+   Kept deliberately simple for now — no hover/focus/click states.
+   Those are worth reintroducing once more of the site is built out,
+   so the interaction has more surface area to earn its place. */
 @media (hover: hover) and (pointer: fine) {
   body {
     cursor: none;
@@ -109,52 +269,19 @@ body {
     fill: none;
     stroke: var(--ring);
     stroke-width: 1.1;
-    transition: r 0.22s cubic-bezier(0.34, 1.2, 0.4, 1), stroke-width 0.22s ease, fill 0.22s ease;
   }
 
   .cursor-tick {
     stroke: var(--ring);
     stroke-width: 1.1;
-    transition: opacity 0.18s ease;
   }
 
   .cursor-dot {
     fill: var(--ink);
-    transition: r 0.18s ease;
-  }
-
-  .cursor.down .cursor-ring {
-    r: 10;
-  }
-
-  .cursor.down .cursor-dot {
-    r: 2.2;
-  }
-
-  /* hover response when the cursor is over text — ring tightens and
-     sharpens toward the centre point, like a lens focusing, rather
-     than a generic hover glow */
-  .cursor.on-text .cursor-ring {
-    r: 8;
-    stroke-width: 1.4;
-    fill: rgba(191, 57, 34, 0.08);
-  }
-
-  .cursor.on-text .cursor-tick {
-    transform: rotate(20deg) scaleY(0.7);
-    transform-origin: 20px 20px;
-  }
-
-  .cursor.on-text .cursor-dot {
-    r: 1.3;
   }
 
   .cursor svg {
     overflow: visible;
-  }
-
-  .cursor-tick {
-    transition: opacity 0.18s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 }
 
@@ -163,10 +290,7 @@ body {
   .wrap {
     animation: none;
   }
-  .cursor,
-  .cursor-ring,
-  .cursor-dot,
-  .cursor-tick {
+  .cursor {
     transition: none !important;
   }
 }
