@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>portfolio — greyhound audio</title>
+<meta name="description" content="hear work mastered, mixed, and produced by greyhound audio.">
+<link rel="canonical" href="https://greyhoundaudio.com/portfolio.html">
+<meta property="og:title" content="portfolio — greyhound audio">
+<meta property="og:description" content="hear work mastered, mixed, and produced by greyhound audio.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://greyhoundaudio.com/portfolio.html">
+<meta property="og:image" content="https://greyhoundaudio.com/images/greyhound-mark.png">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:,">
+</head>
+<body class="page">
+
+  <nav class="nav">
+    <a href="index.html">home</a>
+    <a href="services.html">services</a>
+    <a href="portfolio.html" class="is-active">portfolio</a>
+    <a href="about.html">about</a>
+    <a href="contact.html" class="contact-link">contact</a>
+  </nav>
+
+  <main class="page-content">
+    <h1 class="page-title">portfolio.</h1>
+    <p class="lede">a selection of mastering, mixing, and production work — with full credit to the artists and collaborators behind each release.</p>
+
+    <!--
+      PORTFOLIO SETUP:
+      Each entry below is one track. To add a new one:
+
+      1. Upload / find the track on SoundCloud (yours or the artist's,
+         whichever holds the canonical release)
+      2. On the SoundCloud track page, click Share → Embed
+      3. Copy the src="..." URL from their embed code
+      4. Duplicate one .portfolio-entry block below and paste that URL
+         into the iframe's src attribute
+      5. Update title, artist, your role, and year for that entry
+
+      Remove the .portfolio-empty block below once you have at least
+      one real entry.
+    -->
+
+    <div class="portfolio-list">
+
+      <!-- EXAMPLE ENTRY — duplicate this block per track, then delete
+           this comment and the placeholder empty-state div below -->
+      <!--
+      <div class="portfolio-entry">
+        <div class="portfolio-header">
+          <span class="portfolio-title">track name</span>
+          <span class="portfolio-credit">mastered by greyhound audio</span>
+        </div>
+        <p class="portfolio-meta">artist name — 2026</p>
+        <div class="portfolio-embed">
+          <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
+            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/YOUR_TRACK_ID&color=%23bf3922&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false">
+          </iframe>
+        </div>
+      </div>
+      -->
+
+      <div class="portfolio-empty">
+        portfolio coming soon — check back shortly, or get in touch to hear examples of current work directly.
+      </div>
+
+    </div>
+  </main>
+
+  <img class="corner-logo" src="images/greyhound-mark.png" alt="">
+
+  <footer class="site-footer">
+    <span>&copy; 2026 greyhound audio</span>
+    <a href="privacy.html">privacy policy</a>
+  </footer>
+
+  <!-- custom cursor (desktop / fine-pointer only, see CSS) -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <svg viewBox="0 0 40 40" width="40" height="40">
+      <circle cx="20" cy="20" r="9" class="cursor-ring"/>
+    </svg>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

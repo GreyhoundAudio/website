@@ -256,67 +256,234 @@ body.page {
   margin-bottom: 0.35rem;
 }
 
-/* ============ custom cursor ============ */
-/* Only on devices with a fine pointer (mouse/trackpad) and hover support.
-   Touch devices keep their native cursor entirely.
-   Kept deliberately simple for now — no hover/focus/click states.
-   Those are worth reintroducing once more of the site is built out,
-   so the interaction has more surface area to earn its place. */
-@media (hover: hover) and (pointer: fine) {
-  body {
-    cursor: none;
+/* ============ contact form ============ */
+.contact-form {
+  margin-top: 2.5rem;
+  max-width: 480px;
+}
+
+.form-field {
+  margin-bottom: 1.4rem;
+}
+
+.form-field label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  margin-bottom: 0.5rem;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(46, 44, 40, 0.25);
+  padding: 0.5rem 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--ink);
+  transition: border-color 0.2s ease;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
+.form-field textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.6;
+}
+
+.form-submit {
+  background: none;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  text-transform: lowercase;
+  letter-spacing: 0.03em;
+  padding: 0.65rem 1.75rem;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.form-submit:hover,
+.form-submit:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.form-note {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin-top: 1rem;
+}
+
+/* ============ portfolio ============ */
+.portfolio-list {
+  margin-top: 1.5rem;
+}
+
+.portfolio-entry {
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(46, 44, 40, 0.12);
+}
+
+.portfolio-entry:first-child {
+  border-top: 1px solid rgba(46, 44, 40, 0.12);
+}
+
+.portfolio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+
+.portfolio-title {
+  font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+  font-weight: 400;
+  text-transform: lowercase;
+}
+
+.portfolio-credit {
+  font-size: 0.75rem;
+  text-transform: lowercase;
+  letter-spacing: 0.03em;
+  color: var(--accent);
+}
+
+.portfolio-meta {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-bottom: 1rem;
+}
+
+.portfolio-embed {
+  width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.portfolio-embed iframe {
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+.portfolio-empty {
+  padding: 3rem 0;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  border-top: 1px solid rgba(46, 44, 40, 0.12);
+  border-bottom: 1px solid rgba(46, 44, 40, 0.12);
+}
+
+/* ============ site footer ============ */
+/* Fixed to the bottom on every page, consistent regardless of whether
+   the page itself scrolls (homepage is a fixed single screen; inner
+   pages flow normally) — this keeps the footer always in the same
+   visual place rather than jumping between "end of content" and
+   "bottom of viewport" depending on the page. */
+.site-footer {
+  position: fixed;
+  bottom: 1.75rem;
+  left: 2rem;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.site-footer a,
+.site-footer span {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  margin-right: 1.25rem;
+}
+
+.site-footer a:last-child,
+.site-footer span:last-child {
+  margin-right: 0;
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: var(--ink);
+}
+
+@media (max-width: 600px) {
+  .site-footer {
+    left: 1.25rem;
+    bottom: 1.25rem;
   }
 
-  a {
-    cursor: none;
-  }
-
-  .cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 40px;
-    height: 40px;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    will-change: transform;
-    opacity: 0;
-    transition: opacity 0.25s ease;
-  }
-
-  .cursor.active {
-    opacity: 1;
-  }
-
-  .cursor-ring {
-    fill: none;
-    stroke: var(--ring);
-    stroke-width: 1.1;
-  }
-
-  .cursor-tick {
-    stroke: var(--ring);
-    stroke-width: 1.1;
-  }
-
-  .cursor-dot {
-    fill: var(--ink);
-  }
-
-  .cursor svg {
-    overflow: visible;
+  .site-footer a,
+  .site-footer span {
+    margin-right: 1rem;
   }
 }
 
-/* Touch / coarse-pointer devices: the cursor mark is JS-driven and only
-   ever positioned by the fine-pointer script above, so on touch devices
-   hide it outright rather than letting it sit at its raw unstyled
-   position in the top-left corner. */
-@media not all and (hover: hover) and (pointer: fine) {
-  .cursor {
-    display: none;
-  }
+/* ============ custom cursor ============ */
+/* The native cursor is only hidden once JS confirms the custom cursor is
+   actually running (via the .has-custom-cursor class on <html>). This
+   means if JS fails for any reason — blocked script, browser quirk,
+   anything — visitors keep the normal system cursor rather than losing
+   cursor visibility entirely. Relying on a CSS media query alone to hide
+   cursor:none was the previous approach and is what caused the cursor to
+   fail silently in some browsers. */
+html.has-custom-cursor,
+html.has-custom-cursor a {
+  cursor: none;
+}
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  display: none;
+}
+
+html.has-custom-cursor .cursor {
+  display: block;
+}
+
+.cursor.active {
+  opacity: 1;
+}
+
+.cursor-ring {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+
+.cursor svg {
+  overflow: visible;
 }
 
 /* Respect reduced motion preferences */
