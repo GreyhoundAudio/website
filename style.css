@@ -74,6 +74,15 @@ body.page {
   }
 }
 
+.logo-link {
+  display: block;
+  text-decoration: none;
+  /* Deliberately no hover state, no cursor change, no visual affordance —
+     this is a hidden interaction, not a button. The custom cursor (on
+     devices where it's active) already replaces the native pointer
+     globally, so there's nothing here to give the game away. */
+}
+
 .logo {
   display: block;
   width: clamp(140px, 28vw, 260px);
