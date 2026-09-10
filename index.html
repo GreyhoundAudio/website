@@ -10,10 +10,31 @@
 <meta property="og:description" content="mastering, mixing, and production.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://greyhoundaudio.com/">
-<meta property="og:image" content="https://greyhoundaudio.com/images/greyhound-mark.png">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://greyhoundaudio.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "greyhound audio",
+  "url": "https://greyhoundaudio.com/",
+  "logo": "https://greyhoundaudio.com/images/greyhound-mark.png",
+  "image": "https://greyhoundaudio.com/images/og-image.png",
+  "description": "Mastering, mixing, and production services.",
+  "email": "connor@greyhoundaudio.com",
+  "areaServed": "GB",
+  "sameAs": [
+    "https://instagram.com/greyhound.audio"
+  ]
+}
+</script>
 <link rel="stylesheet" href="style.css">
-<link rel="icon" href="data:,">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 </head>
 <body class="home">
 
@@ -26,8 +47,12 @@
   </nav>
 
   <main class="wrap">
-    <img class="logo" src="images/greyhound-mark.png" alt="greyhound audio logo — a line drawing of a greyhound">
+    <picture>
+      <source srcset="images/greyhound-mark.webp" type="image/webp">
+      <img class="logo" src="images/greyhound-mark.png" alt="greyhound audio logo — a line drawing of a greyhound">
+    </picture>
     <h1 class="mark" data-hoverable>greyhound audio.</h1>
+    <p class="status" data-hoverable>mastering, mixing &amp; production.</p>
   </main>
 
   <footer class="site-footer">
